@@ -29,4 +29,22 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public User() {
+
+    }
+
+    public User(Long id, String email) {
+        this.id = id;
+        this.email = email;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof User) {
+            User u = (User)obj;
+            return getId().equals(u.getId());
+        }
+        return super.equals(obj);
+    }
 }

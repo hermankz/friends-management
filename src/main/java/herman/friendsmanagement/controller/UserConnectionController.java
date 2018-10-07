@@ -1,7 +1,10 @@
 package herman.friendsmanagement.controller;
 
-import herman.friendsmanagement.model.ApiResponse;
-import herman.friendsmanagement.model.FriendsRequest;
+import herman.friendsmanagement.model.request.EmailRequest;
+import herman.friendsmanagement.model.request.RequestorTargetRequest;
+import herman.friendsmanagement.model.request.SenderTextRequest;
+import herman.friendsmanagement.model.response.ApiResponse;
+import herman.friendsmanagement.model.request.FriendsRequest;
 import herman.friendsmanagement.model.User;
 import herman.friendsmanagement.service.IUserConnectionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,13 +14,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin(origins = "*")
-@RequestMapping("/api")
+@RequestMapping("/api/userConnection")
 @RestController
 public class UserConnectionController {
     @Autowired
     private IUserConnectionService userConnectionService;
 
-    @PostMapping(path="/userConnection/create")
+    @PostMapping(path="/create")
     public ApiResponse createConnection(@RequestBody FriendsRequest request) {
         ApiResponse response = new ApiResponse();
 
@@ -44,9 +47,11 @@ public class UserConnectionController {
         }
     }
 
-    @PostMapping(path="/userConnection/friends")
-    public ApiResponse listFriends(@RequestBody String email) {
+    @PostMapping(path="/friends")
+    public ApiResponse listFriends(@RequestBody EmailRequest request) {
         ApiResponse response = new ApiResponse();
+
+        String email = request.getEmail();
 
         //TODO parse email is valid
 
@@ -59,6 +64,7 @@ public class UserConnectionController {
 
             response.setSuccess(true);
             response.setFriends(emails);
+            response.setCount(emails.size());
             return response;
         } catch (Exception err) {
             response.setSuccess(false);
@@ -67,7 +73,7 @@ public class UserConnectionController {
         }
     }
 
-    @PostMapping(path="/userConnection/commonFriends")
+    @PostMapping(path="/commonFriends")
     public ApiResponse findCommonFriends(@RequestBody FriendsRequest request) {
         ApiResponse response = new ApiResponse();
 
@@ -92,6 +98,7 @@ public class UserConnectionController {
 
             response.setSuccess(true);
             response.setFriends(emails);
+            response.setCount(emails.size());
             return response;
         } catch (Exception err) {
             response.setSuccess(false);
@@ -100,9 +107,12 @@ public class UserConnectionController {
         }
     }
 
-    @PostMapping(path="/userConnection/subscribeUpdates")
-    public ApiResponse subscribeUpdates(@RequestBody String requestorEmail, @RequestBody String targetEmail) {
+    @PostMapping(path="/subscribeUpdates")
+    public ApiResponse subscribeUpdates(@RequestBody RequestorTargetRequest request) {
         ApiResponse response = new ApiResponse();
+
+        String requestorEmail = request.getRequestor();
+        String targetEmail = request.getTarget();
 
         //TODO parse both email is valid
 
@@ -117,9 +127,12 @@ public class UserConnectionController {
         }
     }
 
-    @PostMapping(path="/userConnection/blockUpdates")
-    public ApiResponse blockUpdates(@RequestBody String requestorEmail, @RequestBody String targetEmail) {
+    @PostMapping(path="/blockUpdates")
+    public ApiResponse blockUpdates(@RequestBody RequestorTargetRequest request) {
         ApiResponse response = new ApiResponse();
+
+        String requestorEmail = request.getRequestor();
+        String targetEmail = request.getTarget();
 
         //TODO parse both email is valid
 
@@ -134,9 +147,12 @@ public class UserConnectionController {
         }
     }
 
-    @PostMapping(path="/userConnection/listCanReceiveUpdates")
-    public ApiResponse listCanReceiveUpdates(@RequestBody String senderEmail, @RequestBody String text) {
+    @PostMapping(path="/listCanReceiveUpdates")
+    public ApiResponse listCanReceiveUpdates(@RequestBody SenderTextRequest request) {
         ApiResponse response = new ApiResponse();
+
+        String senderEmail = request.getSender();
+        String text = request.getText();
 
         //TODO parse both email is valid
 

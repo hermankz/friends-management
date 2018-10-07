@@ -10,34 +10,34 @@ import javax.validation.Valid;
 import java.util.List;
 
 @CrossOrigin(origins = "*")
-@RequestMapping("/api")
+@RequestMapping("/api/user")
 @RestController
 public class UserController {
     @Autowired
     private IUserService userService;
 
-    @GetMapping(path="/users")
+    @GetMapping(path="/")
     public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
 
-    @PostMapping(path="/users")
+    @PostMapping(path="/")
     public User createUser(@Valid @RequestBody User user) {
         return userService.createUser(user);
     }
 
-    @PutMapping(path="/users/{email}")
+    @PutMapping(path="/{email}")
     public User updateUser(@Valid @RequestBody User user) {
         return userService.updateUser(user);
     }
 
-    @DeleteMapping(path="/users/{email}")
+    @DeleteMapping(path="/{email}")
     public ResponseEntity<?> deleteUser(@PathVariable(value = "email") String email) {
         userService.deleteByEmail(email);
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping(path="/users/{email}")
+    @GetMapping(path="/{email}")
     public User getUserByEmail(@PathVariable(value = "email") String email) {
         return userService.getUserByEmail(email);
     }

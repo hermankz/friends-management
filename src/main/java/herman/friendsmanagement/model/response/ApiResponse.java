@@ -1,4 +1,4 @@
-package herman.friendsmanagement.model;
+package herman.friendsmanagement.model.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -10,7 +10,7 @@ public class ApiResponse {
     private String failedReason;
     private List<String> friends;
     private List<String> recipients;
-    private int count;
+    private Integer count;
 
     public boolean isSuccess() {
         return success;
@@ -44,11 +44,11 @@ public class ApiResponse {
         this.recipients = recipients;
     }
 
-    public int getCount() {
+    public Integer getCount() {
         return count;
     }
 
-    public void setCount(int count) {
+    public void setCount(Integer count) {
         this.count = count;
     }
 }

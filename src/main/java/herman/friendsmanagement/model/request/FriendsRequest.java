@@ -1,4 +1,4 @@
-package herman.friendsmanagement.model;
+package herman.friendsmanagement.model.request;
 
 import java.util.List;
 
