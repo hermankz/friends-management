@@ -1,6 +1,7 @@
 package herman.friendsmanagement.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 @Entity
@@ -12,6 +13,7 @@ public class User {
     private Long id;
 
     @NotBlank
+    @Email
     private String email;
 
     public Long getId() {
