@@ -4,7 +4,7 @@ Build using Java 1.8, Spring Boot 2.0.4 with IntelliJ IDEA
 <h3>Steps to setup:</h3>
 - install Java (jre1.8.0_152), Docker.
 - assume Docker is installed, run `sudo docker-compose up` in the same path as `docker-compose.yml` file located, to initiate PostgreSQL.
-- assume Java is installed, run `java -jar target/friends-management-1.0.0.jar`
+- assume Java is installed, run `java -jar release/friends-management-1.0.0.jar`
 
 <h3>Using the API:</h3>
 1. API to create user:<br>
