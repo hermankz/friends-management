@@ -36,7 +36,7 @@ POST http://localhost:8080/api/userConnection/listCanReceiveUpdates
 <h3>Database (PostgreSQL 9.6) tables:</h3>
 - user_account<br>
   - id (bigint)<br>
-  - email (character)<br>
+  - email (character)<br><br>
 - user_connection<br>
   - id (bigint)<br>
   - block_updates (boolean)<br>
